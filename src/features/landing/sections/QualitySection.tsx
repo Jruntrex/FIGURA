@@ -14,7 +14,7 @@ export const QualitySection = () => {
                         title="Контроль якості на кожному етапі"
                     />
                 </div>
-                <div className="grid gap-6">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {QUALITY_PROTOCOLS.map((protocol) => (
                         <div key={protocol.title} className="flex flex-col relative group">
                             <div className="relative z-10 border-l border-white/10 pl-6 pb-12 group-hover:border-defense transition-colors duration-500">
