@@ -79,8 +79,17 @@
 }
 
 @theme inline {
-  --font-rajdhani: "Exo 2", sans-serif;
+  --font-rajdhani: "Rajdhani", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
+
+  --color-defense: #FF0000;
+  --color-defense-dim: rgba(255, 0, 0, 0.1);
+  --color-defense-glow: rgba(255, 0, 0, 0.5);
+
+  --color-carbon: #000000;
+  --color-carbon-light: #020202;
+  --color-card-bg: #050505;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
