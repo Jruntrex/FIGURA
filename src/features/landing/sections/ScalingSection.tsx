@@ -1,4 +1,4 @@
-import { TechDivider } from '@/components/visuals/TechDivider';
+﻿import { TechDivider } from '@/components/visuals/TechDivider';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { SCALING_STEPS } from '@/app/data/landing-content';
 import { cn } from '@/app/utils/cn';
@@ -10,16 +10,28 @@ export const ScalingSection = () => {
     const { lang } = useLang();
     const t = translations[lang].scaling;
 
-    const steps = SCALING_STEPS.map((step, i) => ({
-        ...step,
-        label: t.steps[i].label,
-        value: 'value' in t.steps[i] ? (t.steps[i] as any).value : undefined,
-        suffix: 'suffix' in t.steps[i] ? (t.steps[i] as any).suffix : undefined,
-        title: 'title' in t.steps[i] ? (t.steps[i] as any).title : undefined,
-        subtitle: t.steps[i].subtitle,
-        desc: t.steps[i].desc,
-        readiness: 'readiness' in t.steps[i] ? (t.steps[i] as any).readiness : undefined,
-    }));
+    const steps = SCALING_STEPS.map((step, i) => {
+        const tStep = t.steps[i] as {
+            label: string;
+            value?: number;
+            suffix?: string;
+            title?: string;
+            subtitle: string;
+            desc: string;
+            readiness?: { score: string; items: string[] };
+        };
+
+        return {
+            ...step,
+            label: tStep.label,
+            value: tStep.value,
+            suffix: tStep.suffix,
+            title: tStep.title,
+            subtitle: tStep.subtitle,
+            desc: tStep.desc,
+            readiness: tStep.readiness,
+        };
+    });
 
     return (
         <section className="relative w-full py-24 bg-carbon">
@@ -119,10 +131,10 @@ export const ScalingSection = () => {
                                         <div className="w-full bg-white/5 border border-white/10 rounded-lg p-4 backdrop-blur-sm">
                                             <div className="flex items-center justify-between mb-3 border-b border-white/5 pb-2">
                                                 <span className="text-xs uppercase tracking-widest text-gray-400 font-bold">Готовність до запуску</span>
-                                                <span className="text-defense font-mono font-bold text-sm">{(step.readiness as any).score}</span>
+                                                <span className="text-defense font-mono font-bold text-sm">{step.readiness.score}</span>
                                             </div>
                                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                                                {(step.readiness as any).items.map((item: string) => (
+                                                {step.readiness.items.map((item: string) => (
                                                     <div key={item} className="flex items-center gap-2 px-3 py-2 bg-black/40 border border-white/5 rounded text-xs text-gray-200 font-medium">
                                                         <div className="w-1.5 h-1.5 bg-defense rounded-full shadow-[0_0_8px_var(--color-defense)]" />
                                                         {item}

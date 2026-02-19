@@ -31,7 +31,7 @@ export const MaterialsSection = () => {
                             title={material.title}
                             subtitle={material.subtitle}
                             icon={material.icon}
-                            type={material.type as any}
+                            type={material.type as 'standard' | 'hero' | 'wide'}
                             className={material.className}
                         />
                     ))}

@@ -35,6 +35,33 @@ export const translations = {
                     desc: 'Neptune 4 Max з площиною друку 420×420×480 мм дозволяє виготовляти великі деталі, досягаючи до 50 см при діагональному розміщенні.',
                 },
             ],
+            servicesTitle: 'Наші Послуги',
+            services: [
+                {
+                    title: 'Серійне 3D-виробництво',
+                    desc: 'Стабільний випуск деталей у промислових обсягах. Точність геометрії та дотримання термінів — партія за партією.',
+                },
+                {
+                    title: 'Інженерне рішення та 3D-моделювання',
+                    desc: 'Проєктуємо компоненти з нуля — з урахуванням аеродинаміки, навантажень та умов експлуатації.',
+                },
+                {
+                    title: 'Швидке прототипування',
+                    desc: 'Від ідеї до фізичного прототипу в межах одного циклу. Тестуйте та вдосконалюйте до запуску серії.',
+                },
+                {
+                    title: 'Реверс-інжиніринг',
+                    desc: 'Відновлюємо 3D-модель за фізичним зразком через сканування — навіть без оригінальної документації.',
+                },
+                {
+                    title: 'Консультація з підбору матеріалів',
+                    desc: 'Підбираємо матеріал під конкретні умови: температура, ударостійкість, вага. Правильний матеріал — надійність місії.',
+                },
+                {
+                    title: 'Партнерство зі стабільного постачання',
+                    desc: 'Виділяємо фіксовані виробничі слоти та гарантуємо щомісячний обсяг без перебоїв.',
+                },
+            ],
         },
 
         // Scaling
@@ -232,6 +259,33 @@ export const translations = {
                 {
                     title: 'Build Plate',
                     desc: 'Neptune 4 Max with a 420×420×480 mm build area allows for large part manufacturing, reaching up to 50 cm with diagonal placement.',
+                },
+            ],
+            servicesTitle: 'Our Services',
+            services: [
+                {
+                    title: 'Serial 3D Production',
+                    desc: 'Stable production of parts in industrial volumes. Geometric precision and deadline compliance — batch after batch.',
+                },
+                {
+                    title: 'Engineering & 3D Modeling',
+                    desc: 'Designing components from scratch — considering aerodynamics, loads, and operating conditions.',
+                },
+                {
+                    title: 'Rapid Prototyping',
+                    desc: 'From idea to physical prototype within one cycle. Test and improve before serial launch.',
+                },
+                {
+                    title: 'Reverse Engineering',
+                    desc: 'Restoring 3D models from physical samples via scanning — even without original documentation.',
+                },
+                {
+                    title: 'Material Selection Consulting',
+                    desc: 'Choosing materials for specific conditions: temperature, impact resistance, weight. Right material — mission reliability.',
+                },
+                {
+                    title: 'Stable Supply Partnership',
+                    desc: 'Allocating fixed production slots and guaranteeing uninterrupted monthly volumes.',
                 },
             ],
         },
