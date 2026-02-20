@@ -119,7 +119,7 @@ export const QUALITY_PROTOCOLS: FeatureItem[] = [
     },
     {
         icon: Cpu,
-        title: "Monitoring",
+        title: "Моніторинг",
         desc: "Централізований моніторинг через Bambu Lab Farm Manager 24/7.",
     },
     {

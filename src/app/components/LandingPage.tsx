@@ -1,6 +1,5 @@
 import { Suspense, lazy } from 'react';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { LanguageProvider } from '@/app/context/LanguageContext';
+import { Helmet } from 'react-helmet-async';
 import { Navbar } from '@/components/layout/Navbar';
 import { GlobalProgressSpine } from '@/features/landing/components/GlobalProgressSpine';
 import { HeroSection } from '@/features/landing/sections/HeroSection';
@@ -25,48 +24,44 @@ const SectionLoader = () => (
 
 const LandingPage = () => {
    return (
-      <LanguageProvider>
-         <HelmetProvider>
-            <div className="min-h-screen bg-black text-white overflow-x-hidden font-sans selection:bg-defense selection:text-white">
-               <Helmet>
-                  <title>FIGURA | Defense 3D Manufacturing</title>
-                  <meta name="description" content="Виробничий продакшин 3D-друку для оборонної промисловості. Швидкість. Точність. Масштаб." />
-                  <meta name="theme-color" content="#FF0000" />
-               </Helmet>
+      <div className="min-h-screen bg-black text-white overflow-x-hidden font-sans selection:bg-defense selection:text-white">
+         <Helmet>
+            <title>FIGURA | Defense 3D Manufacturing</title>
+            <meta name="description" content="Виробничий продакшин 3D-друку для оборонної промисловості. Швидкість. Точність. Масштаб." />
+            <meta name="theme-color" content="#FF0000" />
+         </Helmet>
 
-               {/* === NAVBAR === */}
-               <Navbar />
+         {/* === NAVBAR === */}
+         <Navbar />
 
-               {/* === GLOBAL PROGRESS SPINE === */}
-               <GlobalProgressSpine />
+         {/* === GLOBAL PROGRESS SPINE === */}
+         <GlobalProgressSpine />
 
-               <main>
-                  {/* Critical Sections (LCP) */}
-                  <HeroSection />
-                  <div id="capabilities">
-                     <ProductionSection />
-                  </div>
+         <main>
+            {/* Critical Sections (LCP) */}
+            <HeroSection />
+            <ProductionSection />
 
-                  {/* Lazy Loaded Sections */}
-                  <Suspense fallback={<SectionLoader />}>
-                     <ScalingSection />
-                     <QualitySection />
-                     <div id="materials">
-                        <MaterialsSection />
-                     </div>
-                     <LeadTimeSection />
-                     <ReliabilitySection />
-                     <div id="pricing">
-                        <PricingSection />
-                     </div>
-                     <ContactSection />
-                  </Suspense>
-               </main>
+            {/* Lazy Loaded Sections */}
+            <Suspense fallback={<SectionLoader />}>
+               <div id="capabilities">
+                  <ScalingSection />
+               </div>
+               <QualitySection />
+               <div id="materials">
+                  <MaterialsSection />
+               </div>
+               <LeadTimeSection />
+               <ReliabilitySection />
+               <div id="pricing">
+                  <PricingSection />
+               </div>
+               <ContactSection />
+            </Suspense>
+         </main>
 
-               <Footer />
-            </div>
-         </HelmetProvider>
-      </LanguageProvider>
+         <Footer />
+      </div>
    );
 };
 

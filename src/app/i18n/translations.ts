@@ -107,7 +107,7 @@ export const translations = {
                     desc: 'Комплексний чек-лист перевірки деталей, принтерів та простору перед запуском.',
                 },
                 {
-                    title: 'Monitoring',
+                    title: 'Моніторинг',
                     desc: 'Централізований моніторинг через Bambu Lab Farm Manager 24/7.',
                 },
                 {
@@ -190,7 +190,7 @@ export const translations = {
 
         // Contact
         contact: {
-            tagline: 'Ready To Launch',
+            tagline: 'АЛГОРИТМ ВЗАЄМОДІЇ',
             title1: 'Надішліть нам STL',
             title2: 'ми порахуємо',
             title3: 'строки і вартість.',
@@ -216,6 +216,25 @@ export const translations = {
             status: 'ONLINE // AVAILABLE',
             responseTime: 'Response time: < 2 hours',
             contactLabel: '// DIRECT CONTACT CHANNELS',
+        },
+
+        // Contact Page
+        contactPage: {
+            tagline: '// DIRECT LINE',
+            title: "Зв'яжіться",
+            titleHighlight: 'з Нами',
+            subtitle: 'Залиште заявку — і ми зв\'яжемось з вами протягом 2 годин для обговорення вашого проєкту.',
+            form: {
+                name: "Ім'я / Організація",
+                email: 'Email',
+                phone: 'Телефон (опціонально)',
+                subject: 'Тема запиту',
+                message: 'Опишіть ваш проєкт або задачу',
+                submit: 'Надіслати Запит',
+                sending: 'Відправка...',
+                success: 'Запит надіслано успішно! Ми зв\'яжемося з вами найближчим часом.',
+                error: 'Помилка відправки. Спробуйте через Telegram або Email.',
+            },
         },
 
         // Footer
@@ -416,7 +435,7 @@ export const translations = {
 
         // Contact
         contact: {
-            tagline: 'Ready To Launch',
+            tagline: 'ALGORITHM OF INTERACTION',
             title1: 'Send us your STL',
             title2: "we'll calculate",
             title3: 'timeline and cost.',
@@ -442,6 +461,25 @@ export const translations = {
             status: 'ONLINE // AVAILABLE',
             responseTime: 'Response time: < 2 hours',
             contactLabel: '// DIRECT CONTACT CHANNELS',
+        },
+
+        // Contact Page
+        contactPage: {
+            tagline: '// DIRECT LINE',
+            title: 'Get In',
+            titleHighlight: 'Touch',
+            subtitle: 'Leave a request — and we will contact you within 2 hours to discuss your project.',
+            form: {
+                name: 'Name / Organization',
+                email: 'Email',
+                phone: 'Phone (optional)',
+                subject: 'Request Subject',
+                message: 'Describe your project or task',
+                submit: 'Send Request',
+                sending: 'Sending...',
+                success: 'Request sent successfully! We will contact you shortly.',
+                error: 'Sending failed. Try via Telegram or Email.',
+            },
         },
 
         // Footer
