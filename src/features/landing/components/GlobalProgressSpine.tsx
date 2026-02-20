@@ -3,8 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 export const GlobalProgressSpine = () => {
     const { scrollY } = useScroll();
 
-    // Original mapping based on fixed height (10000px was a placeholder, 
-    // but the user wants the simple slider back)
+    // Mapping based on a large fixed height to simulate global progress
     const progressHeight = useTransform(scrollY, [0, 10000], ["0%", "100%"]);
 
     return (

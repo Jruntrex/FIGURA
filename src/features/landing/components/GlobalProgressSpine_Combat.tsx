@@ -1,55 +1,40 @@
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { useEffect, useState, useRef } from 'react';
+import { motion, useScroll, useTransform, useVelocity, useSpring } from 'framer-motion';
 
-/**
- * Combat-themed scroll progress component.
- * Features a drone flying towards a tank, triggering an explosion on hit.
- * Archived as per user request to return to the original minimalist slider.
- */
-export const GlobalProgressSpineCombat = () => {
+export const GlobalProgressSpine = () => {
     const { scrollYProgress } = useScroll();
-    const trackRef = useRef<HTMLDivElement>(null);
-    const [trackHeight, setTrackHeight] = useState(0);
 
-    useEffect(() => {
-        if (trackRef.current) {
-            setTrackHeight(trackRef.current.offsetHeight);
-        }
-        const handleResize = () => {
-            if (trackRef.current) setTrackHeight(trackRef.current.offsetHeight);
-        };
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    // Create a smooth velocity tracker to detect scroll direction
+    const scrollVelocity = useVelocity(scrollYProgress);
+    const smoothVelocity = useSpring(scrollVelocity, { stiffness: 100, damping: 30 });
 
-    const smoothProgress = useSpring(scrollYProgress, {
-        stiffness: 80,
-        damping: 25,
-        restDelta: 0.001
-    });
+    // Drone travels from top (0%) to tank position (~85%)
+    // Trigger collision at 90% scroll to align exactly with the "Interaction Algorithm" section
+    const droneTop = useTransform(scrollYProgress, [0, 0.9, 1], ["0%", "85%", "85%"]);
 
-    // Adjust mapping: drone stops at tank position (trackHeight - tankIconSize - tankOffset)
-    // Tank is 64px (h-16), offset is 80px (bottom-20)
-    const droneY = useTransform(smoothProgress, [0, 1], [0, trackHeight - 64 - 80]);
-    const explosionScale = useTransform(smoothProgress, [0.97, 1], [0, 2.5]);
-    const explosionOpacity = useTransform(smoothProgress, [0.97, 0.99, 1], [0, 1, 0]);
-    const tankOpacity = useTransform(smoothProgress, [0.98, 1], [1, 0.2]);
+    // Explosion peaking significantly later (0.9) and much narrower
+    const explosionScale = useTransform(scrollYProgress, [0.87, 0.9, 0.93], [0, 8, 0]);
+    const baseExplosionOpacity = useTransform(scrollYProgress, [0.87, 0.9, 0.91], [0, 1, 0]);
+
+    // Directional control: only show explosion when scrolling down (positive velocity)
+    const explosionOpacity = useTransform(
+        [baseExplosionOpacity, smoothVelocity],
+        ([opacity, velocity]) => (velocity as number) > 0 ? (opacity as number) : 0
+    );
+
+    const tankOpacity = useTransform(scrollYProgress, [0.88, 0.92], [1, 0.2]);
 
     return (
-        <div className="fixed left-0 top-0 bottom-0 w-16 md:w-24 z-50 hidden lg:flex flex-col items-center border-r border-white/10 bg-black/30 backdrop-blur-md pl-[2px]">
-            <div
-                ref={trackRef}
-                className="h-full w-[2px] bg-white/5 relative my-20"
-            >
+        <div className="fixed left-0 top-0 bottom-0 w-16 md:w-24 z-50 hidden lg:flex flex-col items-center border-r border-white/5 bg-black/40 backdrop-blur-sm">
+            <div className="h-full w-[1px] bg-gradient-to-b from-defense via-white/5 to-transparent relative">
                 {/* Drone */}
                 <motion.div
-                    style={{ y: droneY }}
-                    className="absolute left-[calc(50%+4px)] -translate-x-1/2 z-30"
+                    style={{ top: droneTop }}
+                    className="absolute left-1/2 -translate-x-1/2 z-30"
                 >
-                    <div className="relative">
-                        {/* Neon Drone Icon */}
+                    <div className="relative group">
+                        {/* Neon Drone Icon - Massive (120x120) with Reduced Glow */}
                         <div
-                            className="w-14 h-14 md:w-16 md:h-16 bg-defense shadow-[0_0_25px_rgba(255,0,0,1)]"
+                            className="w-24 h-24 md:w-32 md:h-32 bg-defense shadow-[0_0_20px_rgba(255,0,0,0.6)]"
                             style={{
                                 maskImage: 'url(/icons/drone.svg)',
                                 WebkitMaskImage: 'url(/icons/drone.svg)',
@@ -61,27 +46,20 @@ export const GlobalProgressSpineCombat = () => {
                                 WebkitMaskSize: 'contain',
                             }}
                         />
-
-                        {/* Persistent Drone Tail/Glow */}
-                        <div className="absolute inset-0 bg-defense/50 blur-2xl rounded-full -z-10 animate-pulse" />
-
-                        {/* Motion Trail */}
-                        <motion.div
-                            style={{ opacity: useTransform(smoothProgress, [0, 1], [1, 0.5]) }}
-                            className="absolute -top-8 left-1/2 -translate-x-1/2 w-[2px] h-8 bg-gradient-to-t from-defense to-transparent"
-                        />
+                        {/* Subtle Glow effect (fixed, no pulse) */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 bg-defense/20 blur-2xl rounded-full -z-10" />
                     </div>
                 </motion.div>
 
                 {/* Tank */}
                 <motion.div
                     style={{ opacity: tankOpacity }}
-                    className="absolute bottom-20 left-[calc(50%+4px)] -translate-x-1/2 z-20"
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20"
                 >
                     <div className="relative">
-                        {/* Neon Tank Icon */}
+                        {/* Neon Tank Icon - Massive (150x150) at bottom edge */}
                         <div
-                            className="w-16 h-16 md:w-20 md:h-20 bg-defense shadow-[0_0_20px_rgba(255,0,0,0.8)]"
+                            className="w-32 h-32 md:w-40 md:h-40 bg-defense shadow-[0_0_30px_rgba(255,0,0,0.8)]"
                             style={{
                                 maskImage: 'url(/icons/tank.svg)',
                                 WebkitMaskImage: 'url(/icons/tank.svg)',
@@ -93,26 +71,19 @@ export const GlobalProgressSpineCombat = () => {
                                 WebkitMaskSize: 'contain',
                             }}
                         />
-                        <div className="absolute inset-x-0 -bottom-4 h-6 bg-defense/30 blur-xl rounded-full -z-10" />
+                        <div className="absolute inset-x-0 -bottom-2 h-10 bg-defense/20 blur-3xl rounded-full -z-10" />
                     </div>
                 </motion.div>
 
-                {/* Explosion/Hit Effect */}
+                {/* Explosion Effect - Massive and Violent peaking at 70% height */}
                 <motion.div
                     style={{
                         scale: explosionScale,
                         opacity: explosionOpacity,
-                        y: trackHeight - 64 - 80 // Positioned at the hit point
+                        top: "85%"
                     }}
-                    className="absolute top-0 left-[calc(50%+4px)] -translate-x-1/2 w-32 h-32 bg-defense rounded-full blur-[60px] z-40 pointer-events-none shadow-[0_0_100px_rgba(255,0,0,1)]"
+                    className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-defense rounded-full blur-[80px] z-40 pointer-events-none shadow-[0_0_200px_rgba(255,0,0,1)]"
                 />
-            </div>
-
-            {/* Terminal Info */}
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-                <div className="text-[10px] font-mono text-defense font-black uppercase tracking-[0.5em] rotate-90 origin-center whitespace-nowrap drop-shadow-[0_0_8px_rgba(255,0,0,0.5)] opacity-30">
-                    COMBAT.SPINE.V3.LOCKED
-                </div>
             </div>
         </div>
     );

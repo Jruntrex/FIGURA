@@ -19,7 +19,7 @@ export const ContactSection = () => {
     }));
 
     return (
-        <section className="relative w-full min-h-screen bg-black overflow-hidden flex flex-col justify-between pt-24">
+        <section id="interaction-algorithm" className="relative w-full min-h-screen bg-black overflow-hidden flex flex-col justify-between pt-24">
             <TechDivider />
 
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center_bottom,_var(--tw-gradient-stops))] from-defense-dim/20 via-black to-black opacity-50 pointer-events-none" />
