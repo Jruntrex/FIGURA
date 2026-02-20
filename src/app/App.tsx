@@ -5,6 +5,7 @@ import LandingPage from './components/LandingPage';
 import ContactPage from './components/ContactPage';
 
 import { ScrollToTop } from '@/components/utils/ScrollToTop';
+import { ScrollToTopButton } from '@/components/ui/ScrollToTopButton';
 
 const AppRoutes = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
       <HelmetProvider>
         <BrowserRouter>
           <ScrollToTop />
+          <ScrollToTopButton />
           <AppRoutes />
         </BrowserRouter>
       </HelmetProvider>

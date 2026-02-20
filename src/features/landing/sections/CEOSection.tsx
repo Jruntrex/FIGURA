@@ -8,12 +8,12 @@ export const CEOSection = () => {
     const { lang } = useLang();
     const t = translations[lang].ceo;
     return (
-        <section className="relative w-full py-24 bg-black">
+        <section className="relative w-full py-16 bg-black">
             <div className="max-w-7xl mx-auto px-8 lg:pl-32">
-                <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 items-stretch border border-white/5 bg-carbon-light/30 relative overflow-hidden h-full min-h-[600px]">
+                <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 items-stretch border border-white/5 bg-carbon-light/30 relative overflow-hidden h-full min-h-[500px]">
 
                     {/* Left: Image Container */}
-                    <div className="relative overflow-hidden min-h-[400px] lg:min-h-full bg-[#5D8CAE]">
+                    <div className="relative overflow-hidden min-h-[350px] lg:min-h-full bg-[#5D8CAE]">
                         {/* Corner Brackets for Image */}
                         <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-defense z-10" />
                         <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-defense z-10" />
@@ -21,7 +21,7 @@ export const CEOSection = () => {
                         <img
                             src={CEO_DATA.image}
                             alt={CEO_DATA.name}
-                            className="w-full h-full object-cover grayscale-[20%] transition-transform duration-1000 group-hover:scale-105"
+                            className="w-full h-full object-cover object-[center_45%] grayscale-[20%] transition-transform duration-1000 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     </div>
