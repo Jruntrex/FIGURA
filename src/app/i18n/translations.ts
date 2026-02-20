@@ -213,17 +213,54 @@ export const translations = {
         // CEO
         ceo: {
             bio: 'Безпосередній контакт для стратегічних партнерів, великих замовлень та питань на рівні керівництва. Доступний для обговорення проєктів.',
-            status: 'ONLINE // AVAILABLE',
-            responseTime: 'Response time: < 2 hours',
-            contactLabel: '// DIRECT CONTACT CHANNELS',
+            status: 'В МЕРЕЖІ // ДОСТУПНИЙ',
+            responseTime: 'Час відповіді: < 2 годин',
+            contactLabel: '// ПРЯМІ КАНАЛИ ЗВ\'ЯЗКУ',
+            hud: {
+                scrollingText: 'СТРАТЕГІЧНЕ ЛІДЕРСТВО ОБОРОННЕ ВИРОБНИЦТВО МАСШТАБ ПІД КОНТРОЛЕМ ПРЕЦИЗІЙНІСТЬ ',
+                sysActive: 'СИС_АКТИВНА',
+                encLvl: 'РІВЕНЬ_ШИФР: МАКС',
+                node: '0X4AF2 // ВУЗОЛ_CEO',
+                directLine: 'Пряма_Лінія // Активна',
+                priorityMode: 'Пріоритетний_Режим',
+                coord: 'КООРД: 50.4501° Пн',
+                scale: 'МАСШТАБ: 1:1.002',
+                ref: 'РЕФ: 0X992BD',
+                bioSig: 'БІО_СИГНАЛ: НОРМА',
+                statusVerified: 'СТАТУС: ПІДТВЕРДЖЕНО',
+                hash: 'ХЕШ: 772-BC-44',
+                prodFlow: 'ПОТІК: БЕЗПЕРЕБІЙНИЙ',
+                loc: 'ЛОК: ЛЬВІВ_УКР'
+            }
         },
 
         // Contact Page
         contactPage: {
-            tagline: '// DIRECT LINE',
+            tagline: '// ПРЯМА ЛІНІЯ',
             title: "Зв'яжіться",
             titleHighlight: 'з Нами',
             subtitle: 'Залиште заявку — і ми зв\'яжемось з вами протягом 2 годин для обговорення вашого проєкту.',
+            hud: {
+                inquiryProtocol: 'Протокол_Запиту',
+                startMission: 'Почніть Свою Місію.',
+                secureChannel: 'Захищений Канал',
+                encrypted: 'AES-256 Шифрована Передача',
+                speedResponse: 'Швидка Відповідь',
+                triage: 'Пріоритетний Аналіз < 2 Годин',
+                globalSync: 'Глобальний Синхрон',
+                intOps: 'Доступно для Міжнародних Операцій',
+                clientId: '// ID_КЛІЄНТА',
+                networkNode: '// ВУЗОЛ_МЕРЕЖІ',
+                commsLink: '// КАНАЛ_ЗВ\'ЯЗКУ',
+                objective: '// ОБ\'ЄКТ_МІСІЇ',
+                payload: '// ОПИС_ВАНТАЖУ',
+                statusReady: 'Статус: Готово_до_відправки',
+                encryptedV2: '// ЗАШИФРОВАНИЙ_КАНАЛ.v2',
+                responseTime: '// ЧАС_ВІДГУКУ: < 2Г',
+                heroDecorText: 'КОНТАКТ_МІСІЯ_КАНАЛ_ЗВЯЗКУ_ГОТОВИЙ_',
+                sysOperational: 'Система: Операційна',
+                linkRedundant: 'Зв\'язок: Потрійний_Резерв'
+            },
             form: {
                 name: "Ім'я / Організація",
                 email: 'Email',
@@ -461,6 +498,22 @@ export const translations = {
             status: 'ONLINE // AVAILABLE',
             responseTime: 'Response time: < 2 hours',
             contactLabel: '// DIRECT CONTACT CHANNELS',
+            hud: {
+                scrollingText: 'STRATEGIC LEADERSHIP DEFENSE MANUFACTURING PRODUCTION SCALE PRECISION ',
+                sysActive: 'SYS_ACTIVE',
+                encLvl: 'ENC_LVL: MAX',
+                node: '0X4AF2 // CEO_NODE',
+                directLine: 'Direct_Line // Active',
+                priorityMode: 'Priority_Mode',
+                coord: 'COORD: 50.4501° N',
+                scale: 'SCALE: 1:1.002',
+                ref: 'REF: 0X992BD',
+                bioSig: 'BIO_SIG: NOMINAL',
+                statusVerified: 'STATUS: VERIFIED',
+                hash: 'HASH: 772-BC-44',
+                prodFlow: 'PROD_FLOW: CONTINUOUS',
+                loc: 'LOC: LVIV_UKR'
+            }
         },
 
         // Contact Page
@@ -469,6 +522,27 @@ export const translations = {
             title: 'Get In',
             titleHighlight: 'Touch',
             subtitle: 'Leave a request — and we will contact you within 2 hours to discuss your project.',
+            hud: {
+                inquiryProtocol: 'Inquiry_Protocol',
+                startMission: 'Start Your Mission.',
+                secureChannel: 'Secure Channel',
+                encrypted: 'AES-256 Encrypted Transfer',
+                speedResponse: 'Speed Response',
+                triage: 'Under 2 Hour Priority Triage',
+                globalSync: 'Global Sync',
+                intOps: 'Available for INT Operations',
+                clientId: '// CLIENT_ID',
+                networkNode: '// NETWORK_NODE',
+                commsLink: '// COMMS_LINK',
+                objective: '// MISSION_OBJECTIVE',
+                payload: '// PAYLOAD_DESCRIPTION',
+                statusReady: 'Status: Ready_to_send',
+                encryptedV2: '// ENCRYPTED_CHANNEL.v2',
+                responseTime: '// RESPONSE_TIME: < 2H',
+                heroDecorText: 'CONTACT_MISSION_SECURE_CHANNEL_READY_',
+                sysOperational: 'System: Operational',
+                linkRedundant: 'Link: Triple-Redundant'
+            },
             form: {
                 name: 'Name / Organization',
                 email: 'Email',
