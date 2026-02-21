@@ -108,16 +108,12 @@ export const QualitySection = () => {
 
             <TechDivider />
 
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-8 lg:pl-32">
-                <div className="mb-24">
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:pl-32">
+                <div className="mb-16 lg:mb-24">
                     <SectionHeader title={t.title} subtitle={t.subtitle} />
-                    <div className="flex items-center gap-4 -mt-12 opacity-30">
-                        <div className="h-[1px] w-24 bg-defense" />
-                        <div className="font-mono text-[10px] tracking-widest text-defense uppercase">System Integrity Check: PASS</div>
-                    </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8">
                     {protocols.map((item, index) => (
                         <ProtocolCard key={item.title} item={item} index={index} />
                     ))}

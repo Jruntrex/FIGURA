@@ -45,8 +45,8 @@ const ContactHero = () => {
                         transition={{ delay: 0.2, duration: 0.8 }}
                         className="flex items-center gap-6 mb-12"
                     >
-                        <div className="h-[1px] w-24 bg-defense shadow-[0_0_10px_#FF0000]" />
-                        <span className="text-defense font-mono text-sm tracking-[0.5em] uppercase font-bold">{t.tagline}</span>
+                        <div className="h-[2px] w-24 bg-defense shadow-[0_0_15px_#FF0000]" />
+                        <span className="text-defense font-mono text-base tracking-[0.6em] uppercase font-black">{t.tagline}</span>
                     </motion.div>
 
                     {/* Title with staggered reveal */}
@@ -61,38 +61,12 @@ const ContactHero = () => {
                             initial={{ x: 50, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ delay: 0.6, duration: 0.8 }}
-                            className="bg-defense text-white px-8 py-3 inline-block transform -skew-x-12 text-4xl md:text-7xl font-black uppercase shadow-[0_0_35px_rgba(255,0,0,0.3)]"
+                            className="bg-defense text-white px-8 py-3 inline-block transform -skew-x-12 text-4xl md:text-7xl font-black uppercase shadow-[0_0_35px_rgba(255,0,0,0.5)]"
                         >
                             {t.titleHighlight}
                         </motion.span>
                     </motion.h1>
 
-                    {/* Subtitle with decorative border */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.8, duration: 0.8 }}
-                        className="mt-20 max-w-2xl"
-                    >
-                        <p className="text-2xl text-gray-400 font-light leading-relaxed border-l-4 border-defense/40 pl-10 py-2">
-                            {t.subtitle}
-                        </p>
-                    </motion.div>
-
-                    {/* Bottom Status Feed (Decorative) */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 1.2 }}
-                        className="mt-24 flex items-center gap-8 font-mono text-[10px] text-gray-700 tracking-widest uppercase"
-                    >
-                        <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-defense animate-pulse" />
-                            <span>{t.hud.sysOperational}</span>
-                        </div>
-                        <div className="w-[1px] h-4 bg-white/10" />
-                        <span>{t.hud.linkRedundant}</span>
-                    </motion.div>
                 </motion.div>
             </div>
 

@@ -11,7 +11,7 @@ export const StepCard = ({ number, title, desc, isActive, onMouseEnter, onMouseL
     <div
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
-        className={`relative flex flex-col gap-6 group ${isActive ? 'opacity-100' : 'opacity-70 hover:opacity-100 transition-opacity duration-300'}`}
+        className={`relative flex flex-col gap-6 group transition-all duration-300`}
     >
         <div className="relative">
             {/* Active/Hover Indicator Glow */}
@@ -27,14 +27,14 @@ export const StepCard = ({ number, title, desc, isActive, onMouseEnter, onMouseL
             <div className={`relative z-10 w-16 h-16 flex items-center justify-center text-2xl font-bold font-mono transition-all duration-500 border
                 ${isActive
                     ? 'bg-defense border-defense text-black shadow-[0_0_30px_rgba(255,0,0,0.6)] scale-110'
-                    : 'bg-carbon border-defense/20 text-defense group-hover:border-defense/60 group-hover:bg-defense/10 group-hover:shadow-[0_0_25px_rgba(255,0,0,0.2)]'
+                    : 'bg-black border-defense/20 text-defense group-hover:border-defense/60 group-hover:bg-defense/10 group-hover:shadow-[0_0_25px_rgba(255,0,0,0.2)]'
                 }`}
             >
                 {number}
             </div>
         </div>
 
-        <div className="relative z-10">
+        <div className={`relative z-10 transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-70 group-hover:opacity-100'}`}>
             <h3 className={`text-2xl font-bold font-rajdhani uppercase mb-3 transition-colors ${isActive ? 'text-white' : 'text-gray-300 group-hover:text-white'}`}>
                 {title}
             </h3>

@@ -43,9 +43,13 @@ export const PricingStack = () => {
     const totalLayers = pricingLayers.length;
 
     return (
-        <div ref={ref} className="w-full max-w-5xl mx-auto py-12 flex justify-center items-center relative">
-            <div className="w-full h-[600px] relative z-10">
-                <svg viewBox="-100 -50 500 600" className="w-full h-full drop-shadow-[0_0_30px_rgba(255,0,0,0.15)]">
+        <div ref={ref} className="w-full max-w-5xl mx-auto py-8 sm:py-12 flex justify-center items-center relative overflow-hidden sm:overflow-visible">
+            <div className="w-full h-[450px] sm:h-[600px] relative z-10">
+                <svg
+                    viewBox="-50 -50 400 600"
+                    preserveAspectRatio="xMidYMid meet"
+                    className="w-full h-full drop-shadow-[0_0_30px_rgba(255,0,0,0.15)] overflow-visible"
+                >
                     <defs>
                         <linearGradient id="glassTop" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" stopColor="rgba(180, 0, 0, 0.9)" />
@@ -79,7 +83,7 @@ export const PricingStack = () => {
 
                         const rightCorner = { x: 280, y: finalStartY + 40 };
                         const leftCorner = { x: 20, y: finalStartY + 40 };
-                        const lineLength = 120;
+                        const lineLength = 100;
                         const lineEndRight = { x: rightCorner.x + lineLength, y: rightCorner.y };
                         const lineEndLeft = { x: leftCorner.x - lineLength, y: leftCorner.y };
 
@@ -122,7 +126,7 @@ export const PricingStack = () => {
                                 <motion.circle
                                     cx={isRight ? lineEndRight.x : lineEndLeft.x}
                                     cy={isRight ? lineEndRight.y : lineEndLeft.y}
-                                    r="5"
+                                    r="4"
                                     fill="#FF0000"
                                 />
 
@@ -159,16 +163,16 @@ export const PricingStack = () => {
 
                                 {/* Label */}
                                 <foreignObject
-                                    x={isRight ? lineEndRight.x + 15 : lineEndLeft.x - 315}
-                                    y={finalStartY - 10}
-                                    width="300"
+                                    x={isRight ? lineEndRight.x + 10 : lineEndLeft.x - 210}
+                                    y={finalStartY - 15}
+                                    width="200"
                                     height="100"
                                     style={{ overflow: 'visible' }}
                                 >
                                     <div className={`flex flex-col justify-center h-full ${isRight ? 'items-start text-left' : 'items-end text-right'}`}>
                                         <div className="flex flex-col justify-center py-2">
-                                            <span className="text-defense font-mono text-xs uppercase tracking-widest mb-3 block">{layer.sub}</span>
-                                            <h4 className="text-white font-rajdhani font-bold text-xl uppercase leading-none">{layer.label}</h4>
+                                            <span className="text-defense font-mono text-[9px] sm:text-xs uppercase tracking-widest mb-1 sm:mb-3 block">{layer.sub}</span>
+                                            <h4 className="text-white font-rajdhani font-bold text-sm sm:text-xl uppercase leading-none break-words max-w-[150px] sm:max-w-none">{layer.label}</h4>
                                         </div>
                                     </div>
                                 </foreignObject>

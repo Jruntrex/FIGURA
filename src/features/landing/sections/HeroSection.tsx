@@ -34,7 +34,7 @@ export const HeroSection = () => {
                 <div className="absolute top-0 right-0 w-[60vh] h-full bg-gradient-to-l from-defense-dim/50 to-transparent" />
             </div>
 
-            <div className="relative z-10 w-full max-w-7xl px-8 lg:px-12 h-full grid lg:grid-cols-2 gap-12 items-center">
+            <div className="relative z-10 w-full max-w-7xl px-6 sm:px-8 lg:px-12 h-full grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 {/* Hero Logo with Darkness Effect */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -56,22 +56,22 @@ export const HeroSection = () => {
                 </motion.div>
 
                 <motion.div
-                    initial={{ opacity: 0, y: 50 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="relative"
+                    className="relative flex flex-col items-center lg:items-start text-center lg:text-left pt-20 lg:pt-0"
                 >
-                    <div className="flex items-center gap-4 mb-6">
-                        <div className="h-[1px] w-12 bg-defense" />
-                        <span className="text-defense font-mono text-sm tracking-[0.2em] uppercase">
+                    <div className="flex items-center gap-4 mb-4 lg:mb-6">
+                        <div className="h-[1px] w-8 lg:w-12 bg-defense" />
+                        <span className="text-defense font-mono text-[10px] lg:text-sm tracking-[0.2em] uppercase">
                             {t.tagline}
                         </span>
                     </div>
-                    <h1 className="text-8xl sm:text-[10rem] font-bold font-rajdhani leading-[0.85] tracking-tighter mb-8 uppercase text-white flex items-baseline">
+                    <h1 className="text-6xl sm:text-8xl lg:text-[10rem] font-bold font-rajdhani leading-[0.85] tracking-tighter mb-6 lg:mb-8 uppercase text-white flex items-baseline">
                         Figura
-                        <span className="text-defense text-6xl ml-1">.</span>
+                        <span className="text-defense text-4xl lg:text-6xl ml-1">.</span>
                     </h1>
-                    <p className="max-w-xl text-xl sm:text-2xl text-gray-400 font-light leading-relaxed border-l-2 border-white/10 pl-6">
+                    <p className="max-w-xl text-lg sm:text-xl lg:text-2xl text-gray-400 font-light leading-relaxed border-l-0 lg:border-l-2 border-white/10 lg:pl-6">
                         {t.description}
                         <span className="block mt-2 text-white font-medium">{t.subline}</span>
                     </p>

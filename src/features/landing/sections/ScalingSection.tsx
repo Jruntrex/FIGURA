@@ -40,18 +40,18 @@ export const ScalingSection = () => {
         <section className="relative w-full py-24 bg-carbon overflow-hidden">
             <TechDivider />
 
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-8 lg:pl-32">
-                <div className="mb-20 max-w-3xl">
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:pl-32">
+                <div className="mb-16 lg:mb-20 max-w-3xl">
                     <SectionHeader
                         subtitle={t.subtitle}
                         title={t.title}
                     />
-                    <p className="text-xl text-gray-400 font-light max-w-2xl mt-8">
+                    <p className="text-lg lg:text-xl text-gray-400 font-light max-w-2xl mt-6 lg:mt-8">
                         {t.description}
                     </p>
                 </div>
 
-                <div className="relative flex flex-col gap-16 md:gap-24 py-12 mb-20">
+                <div className="relative flex flex-col gap-16 md:gap-24 py-8 lg:py-12 mb-20">
                     {/* Interactive Vertical Progress Line */}
                     <div className="absolute left-[27px] md:left-1/2 top-0 bottom-0 w-[2px] bg-white/5 -translate-x-1/2 overflow-hidden">
                         <motion.div
@@ -72,7 +72,7 @@ export const ScalingSection = () => {
                         return (
                             <div
                                 key={step.id}
-                                className="relative grid grid-cols-[56px_1fr] md:grid-cols-[1fr_56px_1fr] items-start md:items-center gap-8 group"
+                                className="relative grid grid-cols-[56px_1fr] md:grid-cols-[1fr_56px_1fr] items-start md:items-center gap-6 sm:gap-8 group"
                                 onMouseEnter={() => setHoveredIndex(index)}
                                 onMouseLeave={() => setHoveredIndex(index === 0 ? 0 : hoveredIndex)}
                             >
@@ -85,8 +85,8 @@ export const ScalingSection = () => {
                                     {isEven && (
                                         <>
                                             <div className={cn(
-                                                "inline-block px-3 py-1 font-bold font-mono text-xs rounded mb-4",
-                                                isStepActive ? "bg-defense text-white" : "border border-white/10 text-gray-500 uppercase"
+                                                "inline-block px-3 py-1 font-bold font-mono text-xs rounded mb-4 border transition-all duration-300",
+                                                isStepActive ? "bg-defense border-defense text-white" : "border-white/10 text-gray-500 uppercase"
                                             )}>
                                                 {step.label}
                                             </div>
@@ -134,45 +134,45 @@ export const ScalingSection = () => {
                                 {/* Right Content / Mobile */}
                                 <div className={cn(
                                     "flex flex-col items-start text-left transition-opacity duration-300",
-                                    isEven ? "md:hidden order-2" : "md:order-3",
+                                    isEven ? "md:opacity-0 md:pointer-events-none order-2 text-wrap" : "md:order-3 text-wrap",
                                     !isEven && (isStepActive ? "opacity-100" : "opacity-60")
                                 )}>
                                     <div className={cn(
-                                        "inline-block px-3 py-1 font-bold font-mono text-xs rounded mb-4 uppercase",
-                                        isStepActive ? "bg-defense text-white" : "border border-white/20 text-gray-400"
+                                        "inline-block px-3 py-1 font-bold font-mono text-[10px] sm:text-xs rounded mb-3 sm:mb-4 uppercase border transition-all duration-300",
+                                        isStepActive ? "bg-defense border-defense text-white" : "border-white/20 text-gray-400"
                                     )}>
                                         {step.label}
                                     </div>
                                     <h3 className={cn(
-                                        "text-6xl md:text-7xl font-bold font-rajdhani text-white mb-2 transition-colors",
+                                        "text-5xl sm:text-6xl md:text-7xl font-bold font-rajdhani text-white mb-2 transition-colors flex items-baseline flex-wrap",
                                         isStepActive && "text-white"
                                     )}>
                                         {step.value !== undefined ? (
                                             <AnimatedCounter target={step.value} suffix={step.suffix} />
                                         ) : (
-                                            step.title
+                                            <span className="break-all">{step.title}</span>
                                         )}
-                                        <span className="text-2xl md:text-3xl text-gray-500 font-medium transition-colors ml-2">{step.unit}</span>
+                                        <span className="text-xl sm:text-2xl md:text-3xl text-gray-500 font-medium transition-colors ml-2">{step.unit}</span>
                                     </h3>
                                     <p className={cn(
-                                        "font-mono text-base uppercase tracking-wider mb-2",
+                                        "font-mono text-sm sm:text-base uppercase tracking-wider mb-2",
                                         isStepActive ? "text-defense" : "text-white/80"
                                     )}>{step.subtitle}</p>
-                                    <p className="text-gray-400 text-lg max-w-sm mb-6">{step.desc}</p>
+                                    <p className="text-gray-400 text-base sm:text-lg max-w-sm mb-6">{step.desc}</p>
 
                                     {step.readiness && (
                                         <div className={cn(
-                                            "w-full bg-white/5 border border-white/10 rounded-lg p-4 backdrop-blur-sm transition-all duration-500",
+                                            "w-full bg-white/5 border border-white/10 rounded-lg p-3 sm:p-4 backdrop-blur-sm transition-all duration-500",
                                             isStepActive ? "border-defense/30 shadow-[0_0_20px_rgba(255,0,0,0.05)]" : "opacity-80"
                                         )}>
                                             <div className="flex items-center justify-between mb-3 border-b border-white/5 pb-2">
-                                                <span className="text-xs uppercase tracking-widest text-gray-400 font-bold">Готовність до запуску</span>
-                                                <span className="text-defense font-mono font-bold text-sm">{step.readiness.score}</span>
+                                                <span className="text-[10px] sm:text-xs uppercase tracking-widest text-gray-400 font-bold">Готовність до запуску</span>
+                                                <span className="text-defense font-mono font-bold text-xs sm:text-sm">{step.readiness.score}</span>
                                             </div>
                                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                                                 {step.readiness.items.map((item: string) => (
-                                                    <div key={item} className="flex items-center gap-2 px-3 py-2 bg-black/40 border border-white/5 rounded text-xs text-gray-100 font-medium">
-                                                        <div className="w-1.5 h-1.5 bg-defense rounded-full shadow-[0_0_8px_var(--color-defense)]" />
+                                                    <div key={item} className="flex items-center gap-2 px-3 py-2 bg-black/40 border border-white/5 rounded text-[10px] sm:text-xs text-gray-100 font-medium">
+                                                        <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-defense rounded-full shadow-[0_0_8px_var(--color-defense)]" />
                                                         {item}
                                                     </div>
                                                 ))}

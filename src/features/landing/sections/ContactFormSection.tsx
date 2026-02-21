@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle2, User, Mail, Phone, FileText, MessageSquare, ShieldCheck, Zap, Globe } from 'lucide-react';
+import { Send, CheckCircle2, User, Mail, Phone, FileText, MessageSquare } from 'lucide-react';
 import { GridBackground } from '@/components/visuals/GridBackground';
 import { useLang } from '@/app/context/LanguageContext';
 import { translations } from '@/app/i18n/translations';
 
 type FormStatus = 'idle' | 'sending' | 'success' | 'error';
+
 
 export const ContactFormSection = () => {
     const { lang } = useLang();
@@ -38,14 +39,14 @@ export const ContactFormSection = () => {
     };
 
     const inputClasses =
-        'w-full bg-neutral-950/50 border border-white/5 px-6 py-5 text-white font-light text-lg ' +
-        'placeholder:text-gray-700 focus:border-defense focus:outline-none transition-all duration-500 ' +
-        'font-sans backdrop-blur-sm relative z-10';
+        'w-full bg-neutral-950/70 border border-white/10 px-5 py-3.5 text-white font-normal text-base ' +
+        'placeholder:text-gray-500 focus:border-defense focus:outline-none transition-all duration-500 ' +
+        'font-mono backdrop-blur-md relative z-10';
 
-    const labelClasses = "block text-defense/40 font-mono text-[9px] tracking-[0.4em] uppercase mb-3 ml-1 group-focus-within:text-defense transition-colors duration-500";
+    const labelClasses = "block text-defense/80 font-mono text-[9px] sm:text-[10px] tracking-[0.4em] uppercase mb-2 ml-1 group-focus-within:text-defense transition-colors duration-500 font-bold";
 
     return (
-        <section className="relative w-full bg-black overflow-hidden py-32">
+        <section className="relative w-full bg-black overflow-hidden py-20 lg:py-32">
             {/* Background Atmosphere */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-defense-dim/15 via-black to-black opacity-60 pointer-events-none" />
             <GridBackground />
@@ -59,239 +60,210 @@ export const ContactFormSection = () => {
                 />
             </div>
 
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-8 lg:pl-32">
-                <div className="grid lg:grid-cols-[1fr_2fr] gap-20">
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8">
+                <div className="max-w-4xl mx-auto">
+                    {/* Form Frame (Centered) */}
+                    <div className="relative w-full bg-neutral-900/40 backdrop-blur-3xl border border-white/5 p-6 sm:p-10 md:p-14 shadow-[0_60px_200px_-40px_rgba(0,0,0,0.8)] group/form">
 
-                    {/* Left Side: Strategic Info */}
-                    <div className="space-y-12">
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="w-10 h-[1px] bg-defense" />
-                                <span className="text-defense font-mono text-[10px] tracking-[0.5em] uppercase">{t.hud.inquiryProtocol}</span>
-                            </div>
-                            <h3 className="text-5xl md:text-6xl font-bold font-rajdhani uppercase text-white leading-none mb-8 tracking-tighter">
-                                {t.hud.startMission.split('.').map((part, i) => (
-                                    <span key={i} className={i === 1 ? "text-defense block" : "block"}>{part}</span>
-                                ))}
-                            </h3>
-                            <p className="text-gray-400 font-light text-lg leading-relaxed max-w-sm border-l border-white/10 pl-6">
-                                {t.subtitle}
-                            </p>
-                        </motion.div>
-
-                        <div className="space-y-6">
-                            {[
-                                { icon: ShieldCheck, title: t.hud.secureChannel, desc: t.hud.encrypted },
-                                { icon: Zap, title: t.hud.speedResponse, desc: t.hud.triage },
-                                { icon: Globe, title: t.hud.globalSync, desc: t.hud.intOps }
-                            ].map((item, i) => (
+                        {/* Animated Inner Border Glow */}
+                        <AnimatePresence>
+                            {activeField && (
                                 <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.2 + i * 0.1 }}
-                                    className="flex items-center gap-4 group"
-                                >
-                                    <div className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center text-defense group-hover:bg-defense group-hover:text-white transition-all duration-500">
-                                        <item.icon size={20} />
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className="text-white font-rajdhani font-bold text-sm uppercase tracking-wider">{item.title}</span>
-                                        <span className="text-gray-600 font-mono text-[9px] uppercase tracking-widest">{item.desc}</span>
-                                    </div>
-                                </motion.div>
-                            ))}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    className="absolute inset-0 border border-defense/20 pointer-events-none shadow-[inset_0_0_60px_rgba(255,0,0,0.08)] z-0"
+                                />
+                            )}
+                        </AnimatePresence>
+
+                        {/* Corner HUD Markers (Enhanced) */}
+                        <div className="absolute -top-[2px] -left-[2px] w-20 h-20 border-t-4 border-l-4 border-defense z-20 group-hover/form:w-24 group-hover/form:h-24 transition-all duration-700 ease-out" />
+                        <div className="absolute -bottom-[2px] -right-[2px] w-20 h-20 border-b-4 border-r-4 border-defense z-20 group-hover/form:w-24 group-hover/form:h-24 transition-all duration-700 ease-out" />
+
+                        {/* Tactical Decorations */}
+                        <div className="absolute top-0 right-12 -translate-y-full py-4 flex items-center gap-4 opacity-70 group-hover/form:opacity-100 transition-all">
+                            <div className="flex gap-1">
+                                {[...Array(3)].map((_, i) => (
+                                    <div key={i} className="w-1.5 h-1.5 border border-defense" />
+                                ))}
+                            </div>
+                            <span className="text-[9px] font-mono uppercase tracking-[0.6em] font-bold">READY_TO_XMIT</span>
+                            <div className="w-2 h-2 bg-defense rounded-full animate-pulse shadow-[0_0_10px_#FF0000]" />
                         </div>
-                    </div>
 
-                    {/* Right Side: High-Tech Form */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        className="relative"
-                    >
-                        {/* Form Frame */}
-                        <div className="relative bg-neutral-900/40 backdrop-blur-2xl border border-white/10 p-10 md:p-16 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]">
-
-                            {/* Animated Inner Border Glow */}
-                            <AnimatePresence>
-                                {activeField && (
-                                    <motion.div
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        exit={{ opacity: 0 }}
-                                        className="absolute inset-0 border border-defense/30 pointer-events-none shadow-[inset_0_0_30px_rgba(255,0,0,0.05)] z-0"
-                                    />
-                                )}
-                            </AnimatePresence>
-
-                            {/* Corner HUD Markers */}
-                            <div className="absolute -top-[1px] -left-[1px] w-8 h-8 border-t border-l border-defense z-20" />
-                            <div className="absolute -bottom-[1px] -right-[1px] w-8 h-8 border-b border-r border-defense z-20" />
-
-                            <form onSubmit={handleSubmit} className="space-y-10 relative z-10">
-                                <div className="grid md:grid-cols-2 gap-10">
-                                    <div className="group">
-                                        <label className={labelClasses}>{t.hud.clientId}</label>
-                                        <div className="relative">
-                                            <User size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/10 group-focus-within:text-defense transition-colors" />
-                                            <input
-                                                type="text"
-                                                name="name"
-                                                value={formData.name}
-                                                onFocus={() => setActiveField('name')}
-                                                onBlur={() => setActiveField(null)}
-                                                onChange={handleChange}
-                                                placeholder={t.form.name.toUpperCase()}
-                                                required
-                                                className={inputClasses}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="group">
-                                        <label className={labelClasses}>{t.hud.networkNode}</label>
-                                        <div className="relative">
-                                            <Mail size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/10 group-focus-within:text-defense transition-colors" />
-                                            <input
-                                                type="email"
-                                                name="email"
-                                                value={formData.email}
-                                                onFocus={() => setActiveField('email')}
-                                                onBlur={() => setActiveField(null)}
-                                                onChange={handleChange}
-                                                placeholder={t.form.email.toUpperCase()}
-                                                required
-                                                className={inputClasses}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="grid md:grid-cols-2 gap-10">
-                                    <div className="group">
-                                        <label className={labelClasses}>{t.hud.commsLink}</label>
-                                        <div className="relative">
-                                            <Phone size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/10 group-focus-within:text-defense transition-colors" />
-                                            <input
-                                                type="tel"
-                                                name="phone"
-                                                value={formData.phone}
-                                                onFocus={() => setActiveField('phone')}
-                                                onBlur={() => setActiveField(null)}
-                                                onChange={handleChange}
-                                                placeholder={t.form.phone.toUpperCase()}
-                                                className={inputClasses}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="group">
-                                        <label className={labelClasses}>{t.hud.objective}</label>
-                                        <div className="relative">
-                                            <FileText size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/10 group-focus-within:text-defense transition-colors" />
-                                            <input
-                                                type="text"
-                                                name="subject"
-                                                value={formData.subject}
-                                                onFocus={() => setActiveField('subject')}
-                                                onBlur={() => setActiveField(null)}
-                                                onChange={handleChange}
-                                                placeholder={t.form.subject.toUpperCase()}
-                                                required
-                                                className={inputClasses}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="group">
-                                    <label className={labelClasses}>{t.hud.payload}</label>
+                        <form onSubmit={handleSubmit} className="space-y-8 sm:space-y-10 relative z-10">
+                            <div className="grid md:grid-cols-2 gap-8 sm:gap-10">
+                                <div className="group/field relative">
+                                    <label className={labelClasses}>{t.hud.clientId}</label>
                                     <div className="relative">
-                                        <MessageSquare size={16} className="absolute right-4 top-6 text-white/10 group-focus-within:text-defense transition-colors" />
-                                        <textarea
-                                            name="message"
-                                            value={formData.message}
-                                            onFocus={() => setActiveField('message')}
+                                        <div className="absolute inset-0 bg-defense/5 opacity-0 group-focus-within/field:opacity-100 transition-opacity duration-500" />
+                                        <User size={18} className="absolute right-6 top-1/2 -translate-y-1/2 text-white/5 group-focus-within/field:text-defense transition-colors" />
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            value={formData.name}
+                                            onFocus={() => setActiveField('name')}
                                             onBlur={() => setActiveField(null)}
                                             onChange={handleChange}
-                                            placeholder={t.form.message.toUpperCase()}
+                                            placeholder={t.form.name.toUpperCase()}
                                             required
-                                            rows={5}
-                                            className={`${inputClasses} resize-none`}
+                                            className={inputClasses}
                                         />
+                                        {/* Tactical Brackets */}
+                                        <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-defense/0 group-focus-within/field:border-defense/60 transition-all duration-500" />
+                                        <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-defense/0 group-focus-within/field:border-defense/60 transition-all duration-500" />
                                     </div>
                                 </div>
-
-                                <div className="flex flex-col md:flex-row items-center justify-between gap-8 pt-6">
-                                    <div className="flex flex-col gap-1 hidden md:flex">
-                                        <div className="flex gap-2">
-                                            {[...Array(4)].map((_, i) => (
-                                                <div key={i} className={`w-1 h-3 ${status === 'sending' ? 'bg-defense animate-pulse' : 'bg-white/10'}`} style={{ animationDelay: `${i * 0.1}s` }} />
-                                            ))}
-                                        </div>
-                                        <span className="text-[8px] font-mono text-gray-700 tracking-[0.3em] uppercase">{t.hud.statusReady}</span>
+                                <div className="group/field relative">
+                                    <label className={labelClasses}>{t.hud.networkNode}</label>
+                                    <div className="relative">
+                                        <div className="absolute inset-0 bg-defense/5 opacity-0 group-focus-within/field:opacity-100 transition-opacity duration-500" />
+                                        <Mail size={18} className="absolute right-6 top-1/2 -translate-y-1/2 text-white/5 group-focus-within/field:text-defense transition-colors" />
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onFocus={() => setActiveField('email')}
+                                            onBlur={() => setActiveField(null)}
+                                            onChange={handleChange}
+                                            placeholder={t.form.email.toUpperCase()}
+                                            required
+                                            className={inputClasses}
+                                        />
+                                        <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-defense/0 group-focus-within/field:border-defense/60 transition-all duration-500" />
                                     </div>
+                                </div>
+                            </div>
 
-                                    <motion.button
-                                        type="submit"
-                                        disabled={status === 'sending' || status === 'success'}
-                                        whileHover={{ scale: 1.02 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        className={`
-                                            relative w-full md:w-auto px-10 py-4 font-rajdhani font-black text-sm uppercase tracking-[0.2em]
-                                            transition-all duration-500 overflow-hidden group/btn
-                                            ${status === 'success' ? 'bg-white text-black' : 'bg-defense text-white'}
-                                            shadow-[0_0_20px_rgba(255,0,0,0.1)] hover:shadow-[0_0_40px_rgba(255,0,0,0.3)]
-                                        `}
-                                    >
-                                        {status === 'success' && (
+                            <div className="grid md:grid-cols-2 gap-12 sm:gap-16">
+                                <div className="group/field relative">
+                                    <label className={labelClasses}>{t.hud.commsLink}</label>
+                                    <div className="relative">
+                                        <div className="absolute inset-0 bg-defense/5 opacity-0 group-focus-within/field:opacity-100 transition-opacity duration-500" />
+                                        <Phone size={18} className="absolute right-6 top-1/2 -translate-y-1/2 text-white/5 group-focus-within/field:text-defense transition-colors" />
+                                        <input
+                                            type="tel"
+                                            name="phone"
+                                            value={formData.phone}
+                                            onFocus={() => setActiveField('phone')}
+                                            onBlur={() => setActiveField(null)}
+                                            onChange={handleChange}
+                                            placeholder={t.form.phone.toUpperCase()}
+                                            className={inputClasses}
+                                        />
+                                        <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-defense/0 group-focus-within/field:border-defense/60 transition-all duration-500" />
+                                    </div>
+                                </div>
+                                <div className="group/field relative">
+                                    <label className={labelClasses}>{t.hud.objective}</label>
+                                    <div className="relative">
+                                        <div className="absolute inset-0 bg-defense/5 opacity-0 group-focus-within/field:opacity-100 transition-opacity duration-500" />
+                                        <FileText size={18} className="absolute right-6 top-1/2 -translate-y-1/2 text-white/5 group-focus-within/field:text-defense transition-colors" />
+                                        <input
+                                            type="text"
+                                            name="subject"
+                                            value={formData.subject}
+                                            onFocus={() => setActiveField('subject')}
+                                            onBlur={() => setActiveField(null)}
+                                            onChange={handleChange}
+                                            placeholder={t.form.subject.toUpperCase()}
+                                            required
+                                            className={inputClasses}
+                                        />
+                                        <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-defense/0 group-focus-within/field:border-defense/60 transition-all duration-500" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="group/field relative">
+                                <label className={labelClasses}>{t.hud.payload}</label>
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-defense/5 opacity-0 group-focus-within/field:opacity-100 transition-opacity duration-500" />
+                                    <MessageSquare size={18} className="absolute right-6 top-8 text-white/5 group-focus-within/field:text-defense transition-colors" />
+                                    <textarea
+                                        name="message"
+                                        value={formData.message}
+                                        onFocus={() => setActiveField('message')}
+                                        onBlur={() => setActiveField(null)}
+                                        onChange={handleChange}
+                                        placeholder={t.form.message.toUpperCase()}
+                                        required
+                                        rows={6}
+                                        className={`${inputClasses} resize-none`}
+                                    />
+                                    <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-defense/0 group-focus-within/field:border-defense/60 transition-all duration-500" />
+                                </div>
+                            </div>
+
+                            <div className="flex flex-col md:flex-row items-center justify-between gap-12 pt-10 sm:pt-12">
+                                <div className="flex flex-col gap-4 hidden sm:flex">
+                                    <div className="flex gap-2.5">
+                                        {[...Array(8)].map((_, i) => (
                                             <motion.div
-                                                initial={{ width: 0 }}
-                                                animate={{ width: "100%" }}
-                                                className="absolute inset-x-0 bottom-0 h-0.5 bg-defense shadow-[0_0_10px_#FF0000]"
+                                                key={i}
+                                                animate={status === 'sending' ? { opacity: [0.2, 1, 0.2] } : {}}
+                                                transition={{ duration: 0.5, repeat: Infinity, delay: i * 0.1 }}
+                                                className={`w-2 h-5 ${status === 'sending' ? 'bg-defense shadow-[0_0_10px_#FF0000]' : 'bg-white/10'}`}
                                             />
-                                        )}
-                                        <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700" />
-
-                                        <span className="relative z-10 flex items-center justify-center gap-3">
-                                            {status === 'idle' && (
-                                                <>
-                                                    <Send size={16} />
-                                                    {t.form.submit}
-                                                </>
-                                            )}
-                                            {status === 'sending' && (
-                                                <>
-                                                    <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-                                                    {t.form.sending}
-                                                </>
-                                            )}
-                                            {status === 'success' && (
-                                                <>
-                                                    <CheckCircle2 size={16} className="text-defense" />
-                                                    <span className="text-black">{t.form.success}</span>
-                                                </>
-                                            )}
-                                        </span>
-                                    </motion.button>
+                                        ))}
+                                    </div>
+                                    <div className="items-center gap-3 hidden sm:flex">
+                                        <div className="w-2.5 h-2.5 bg-defense/40 rounded-full" />
+                                        <span className="text-[11px] font-mono text-gray-700 tracking-[0.5em] uppercase font-black">{t.hud.statusReady}</span>
+                                    </div>
                                 </div>
-                            </form>
-                        </div>
 
-                        {/* Visual Decorative Bar at bottom */}
-                        <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-defense/30 to-transparent" />
+                                <motion.button
+                                    type="submit"
+                                    disabled={status === 'sending' || status === 'success'}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className={`
+                                            relative w-full md:w-auto px-12 py-5 font-rajdhani font-black text-sm sm:text-base uppercase tracking-[0.3em]
+                                            transition-all duration-700 overflow-hidden group/btn
+                                            ${status === 'success' ? 'bg-white text-black' : 'bg-defense text-white'}
+                                            shadow-[0_0_40px_rgba(255,0,0,0.2)] hover:shadow-[0_0_70px_rgba(255,0,0,0.5)]
+                                        `}
+                                >
+                                    <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 ease-in-out" />
 
-                        {/* Status Tags */}
-                        <div className="absolute -bottom-12 left-0 right-0 flex justify-between px-4 font-mono text-[9px] text-gray-700 tracking-[0.3em] uppercase">
-                            <span>{t.hud.encryptedV2}</span>
-                            <span>{t.hud.responseTime}</span>
+                                    <span className="relative z-10 flex items-center justify-center gap-5">
+                                        {status === 'idle' && (
+                                            <>
+                                                <Send size={20} className="group-hover/btn:translate-x-2 transition-transform duration-500" />
+                                                {t.form.submit}
+                                            </>
+                                        )}
+                                        {status === 'sending' && (
+                                            <>
+                                                <div className="w-6 h-6 border-4 border-white/20 border-t-white rounded-full animate-spin" />
+                                                {t.form.sending}
+                                            </>
+                                        )}
+                                        {status === 'success' && (
+                                            <>
+                                                <CheckCircle2 size={22} className="text-defense" />
+                                                <span className="text-black font-black">{t.form.success}</span>
+                                            </>
+                                        )}
+                                    </span>
+                                </motion.button>
+                            </div>
+                        </form>
+
+                        {/* Status Tags (Cyber-HUD) */}
+                        <div className="absolute -bottom-16 left-0 right-0 flex justify-between px-8 font-mono text-[11px] text-white/60 tracking-[0.5em] uppercase font-bold">
+                            <span className="flex items-center gap-3">
+                                <span className="w-2 h-2 bg-defense rounded-full animate-pulse shadow-[0_0_10px_#FF0000]" />
+                                {t.hud.encryptedV2}
+                            </span>
+                            <span className="flex items-center gap-3">
+                                {t.hud.responseTime}
+                                <span className="w-2 h-2 bg-defense rounded-full animate-pulse shadow-[0_0_10px_#FF0000]" />
+                            </span>
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>
