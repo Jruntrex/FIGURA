@@ -163,7 +163,7 @@ export const Navbar = () => {
                     <div className="flex flex-col py-2">
                         {!isContactPage ? (
                             <>
-                                {navLinks.map((link, i) => (
+                                {navLinks.map((link) => (
                                     <a
                                         key={link.href}
                                         href={link.href}
