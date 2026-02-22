@@ -158,7 +158,7 @@ export const Navbar = () => {
                 >
                     {/* Header line */}
                     <div className="h-[2px] w-full bg-gradient-to-r from-defense via-defense/50 to-transparent" />
-                    
+
                     {/* Nav links */}
                     <div className="flex flex-col py-2">
                         {!isContactPage ? (

@@ -17,7 +17,6 @@ export const CEOSection = () => {
     });
 
     const yParallax = useTransform(scrollYProgress, [0, 1], [-50, 50]);
-    const opacityHero = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
     return (
         <section ref={containerRef} className="relative w-full py-24 bg-black overflow-hidden">
@@ -35,7 +34,6 @@ export const CEOSection = () => {
 
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:pl-32 relative z-10">
                 <motion.div
-                    style={{ opacity: opacityHero }}
                     className="grid lg:grid-cols-[1.2fr_1fr] gap-0 items-stretch bg-neutral-900/40 backdrop-blur-xl border border-white/10 relative overflow-hidden shadow-2xl"
                 >
                     {/* Corner HUD Markers */}

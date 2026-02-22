@@ -60,8 +60,8 @@ export const ContactFormSection = () => {
                 />
             </div>
 
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8">
-                <div className="max-w-4xl mx-auto">
+            <div className="relative z-10 w-full max-w-4xl mx-auto px-6 sm:px-8">
+                <div className="flex justify-center items-center">
                     {/* Form Frame (Centered) */}
                     <div className="relative w-full bg-neutral-900/40 backdrop-blur-3xl border border-white/5 p-6 sm:p-10 md:p-14 shadow-[0_60px_200px_-40px_rgba(0,0,0,0.8)] group/form">
 
@@ -264,6 +264,7 @@ export const ContactFormSection = () => {
                             </span>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
